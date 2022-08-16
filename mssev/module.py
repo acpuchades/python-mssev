@@ -24,6 +24,10 @@ def _load_global_armss_table(path):
     return df
 
 
+GLOBAL_MSSS = None
+GLOBAL_ARMSS = None
+
+
 def global_msss(df, edss='edss', duration='dd'):
     global GLOBAL_MSSS
     if GLOBAL_MSSS is None:
