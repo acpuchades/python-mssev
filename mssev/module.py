@@ -35,7 +35,7 @@ def global_msss(df, edss='edss', duration='dd'):
         path = Path(__file__).parent / 'Global-MSSS.tsv'
         GLOBAL_MSSS = _load_global_msss_table(path)
 
-    df = df.copy()
+    df = df[[duration, edss]].copy()
     if is_timedelta64_dtype(df[duration]):
         df[duration] = df[duration].dt.days / 365.25
     df[duration] = np.floor(df[duration]).clip(upper=30).astype('Int32')
@@ -49,7 +49,7 @@ def global_armss(df, edss='edss', age='ageataedss'):
         path = Path(__file__).parent / 'Global-ARMSS.tsv'
         GLOBAL_ARMSS = _load_global_armss_table(path)
 
-    df = df.copy()
+    df = df[[edss, age]].copy()
     if is_timedelta64_dtype(df[age]):
         df[age] = df[age].dt.days / 365.25
     df[age] = np.floor(df[age]).clip(upper=75).astype('Int32')
