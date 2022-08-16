@@ -17,3 +17,6 @@ packages = ["mssev"]
 version = {attr = "mssev.VERSION"}
 readme = {file = "README.md"}
 dependencies = {file = "requirements.txt"}
+
+[tool.setuptools.package-data]
+mssev = ["*.tsv"]
