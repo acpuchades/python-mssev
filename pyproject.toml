@@ -4,19 +4,23 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mssev"
-license = { text = "GPL-3.0-only" }
+version = "0.3.0"
+readme = "README.md"
+description = "Calculates ARMSS and both local and global MSSS"
+license = { text = "GPL-3.0-or-later" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
 authors = [
     { name="Alejandro Caravaca Puchades", email="acaravacapuchades@icloud.com" },
 ]
-dynamic = ["version", "readme", "dependencies"]
+dynamic = ["dependencies"]
 
 [tool.setuptools]
 packages = ["mssev"]
 
 [tool.setuptools.dynamic]
-version = {attr = "mssev.VERSION"}
-readme = {file = "README.md"}
 dependencies = {file = "requirements.txt"}
 
 [tool.setuptools.package-data]
-mssev = ["*.tsv"]
+mssev = ["data/*.tsv"]
