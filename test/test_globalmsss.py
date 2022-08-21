@@ -6,9 +6,9 @@ from mssev import global_msss
 
 class TestGlobalMSSS(unittest.TestCase):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.data = pd.read_csv('test/data.csv')
+    @classmethod
+    def setUpClass(cls):
+        cls.data = pd.read_csv('test/data.csv')
 
     def test_original(self):
         original_msss = global_msss(self.data, table='original')
