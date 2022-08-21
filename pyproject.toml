@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mssev"
-version = "0.3.1"
+version = "0.3.2"
 readme = "README.md"
 description = "Calculates ARMSS and both local and global MSSS"
 license = { text = "GPL-3.0-or-later" }

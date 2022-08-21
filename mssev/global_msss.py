@@ -28,7 +28,7 @@ def global_msss(df, table='original', edss='edss', duration='dd'):
 
     df = df[[duration, edss]].copy()
     if is_timedelta64_dtype(df[duration]):
-        df[duration] = df[duration].dt.days / np.timedelta64(1, 'Y')
+        df[duration] = df[duration] // np.timedelta64(1, 'Y')
     df[duration] = np.floor(df[duration]).clip(upper=30)
     results = df.merge(table, left_on=[duration, edss], right_index=True, how='left')
     return results.MSSS
