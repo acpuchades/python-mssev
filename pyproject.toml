@@ -10,6 +10,13 @@ description = "Calculates ARMSS and both local and global MSSS"
 license = { text = "GPL-3.0-or-later" }
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Scientific/Engineering :: Medical Science Apps."
 ]
 authors = [
     { name="Alejandro Caravaca Puchades", email="acaravacapuchades@icloud.com" },
