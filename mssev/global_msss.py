@@ -22,13 +22,13 @@ def _load_msss_table(path):
     return df
 
 
-def global_msss(df, table='original', edss='edss', duration='dd'):
-    if isinstance(table, str) and table in GLOBAL_MSSS_TABLE_FILES:
-        table = _load_msss_table(GLOBAL_MSSS_TABLE_FILES.get(table))
+def global_msss(df, ref='original', ds='edss', duration='dd'):
+    if isinstance(ref, str) and ref in GLOBAL_MSSS_TABLE_FILES:
+        ref = _load_msss_table(GLOBAL_MSSS_TABLE_FILES.get(ref))
 
-    df = df[[duration, edss]].copy()
+    df = df[[duration, ds]].copy()
     if is_timedelta64_dtype(df[duration]):
         df[duration] = df[duration] // np.timedelta64(1, 'Y')
     df[duration] = np.floor(df[duration]).clip(upper=30)
-    results = df.merge(table, left_on=[duration, edss], right_index=True, how='left')
+    results = df.merge(ref, left_on=[duration, ds], right_index=True, how='left')
     return results.MSSS

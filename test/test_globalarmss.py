@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import unittest
 
@@ -8,9 +9,8 @@ class TestGlobalARMSS(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.data = pd.read_csv('test/data.csv')
+        cls.data = pd.read_csv('test/mssev.csv')
 
     def test_original(self):
-        original_armss = global_armss(self.data, table='original')
-        armss_delta = original_armss - self.data.gARMSS
-        self.assertTrue((armss_delta.abs() < 0.001).all())
+        original_armss = global_armss(self.data, ref='original')
+        self.assertTrue(np.allclose(original_armss, self.data.gARMSS))
