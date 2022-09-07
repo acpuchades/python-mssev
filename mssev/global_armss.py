@@ -11,7 +11,6 @@ GLOBAL_ARMSS_TABLE_FILES = {
     'original': datadir / 'Original-ARMSS.tsv',
 }
 
-
 def _load_armss_table(path):
     df = pd.read_csv(path, sep='\t')
     df = df.rename(columns=lambda x: x.replace('EDSS', 'ARMSS'))

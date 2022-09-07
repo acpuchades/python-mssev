@@ -10,9 +10,9 @@ def _first_irreversible_ds(df):
     return np.nan
 
 
-def _calculate_irreversible_ds_from(df, ds, t, min_period):
+def _calculate_irreversible_ds_from(df, ds, date, min_period):
     ndim = len(df)  # number of assessments
-    ts = np.tile(df[t], ndim).reshape((ndim, ndim))
+    ts = np.tile(df[date], ndim).reshape((ndim, ndim))
     tsdelta = ts.T - ts
 
     # tsdelta:
@@ -27,7 +27,7 @@ def _calculate_irreversible_ds_from(df, ds, t, min_period):
     idsm = dsm = np.where(tsdelta >= np.timedelta64(0), dsm, np.nan)
 
     if min_period is not None:
-        tsvalid = np.tile(df[t] + min_period, ndim).reshape((ndim, ndim))
+        tsvalid = np.tile(df[date] + min_period, ndim).reshape((ndim, ndim))
 
         # tsvalid:
         #
@@ -49,10 +49,10 @@ def _calculate_irreversible_ds_from(df, ds, t, min_period):
     return scores.apply(_first_irreversible_ds, axis=1)
 
 
-def irreversible_ds(df, id='pid', ds='edss', t='date', min_period=None):
+def irreversible_ds(df, id='pid', ds='edss', date='date', min_period=None):
     results = pd.Series([], dtype=df[ds].dtype)
-    grouped = df.sort_values(t).groupby(id)
+    grouped = df.sort_values(date).groupby(id)
     for _, rows in grouped:
-        idss = _calculate_irreversible_ds_from(rows, ds, t, min_period)
+        idss = _calculate_irreversible_ds_from(rows, ds, date, min_period)
         results = pd.concat([results, idss])
     return results
