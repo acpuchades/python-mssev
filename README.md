@@ -22,7 +22,7 @@ you can do so with the following code:
 
 ```python
 followups['I_EDSS'] = ms.irreversible_ds(followups,
-                                         pid='ID', ds='EDSS', t='Date',
+                                         pid='ID', ds='edss', t='Date',
                                          min_period=np.timedelta64(6, 'M'))
 ```
 
@@ -36,14 +36,25 @@ a valuable tool in cross-sectional studies. You can read the original article
 You can calculate the MSSS for every patient with the following:
 
 ```python
-patients['MSSS'] = ms.MSSS(patients, ds='EDSS', duration='Duration')
+patients['MSSS'] = ms.MSSS(patients, ds='edss', duration='dd')
 ```
 
 If you want to calculate the MSSS for each follow-up assessment, you can do so
 like this:
 
 ```python
-followups['MSSS'] = ms.MSSS(followups, ds='EDSS', duration='Duration')
+followups['MSSS'] = ms.MSSS(followups, ds='edss', duration='dd')
+```
+
+If you have a cohort of pediatric-onset MS (POMS) patients, you should use the
+Ped-MSSS score (see the article [here](https://doi.org/10.1212/WNL.0000000000010414)).
+For that, you can either pass `ref='santoro'` to the MSSS function or use the PedMSSS
+alias:
+
+```python
+# both are equivalent
+patients['PedMSSS'] = ms.MSSS(patients, ref='santoro', ds='edss', duration='dd')
+patients['PedMSSS'] = ms.PedMSSS(patients, ds='edss', duration='dd')
 ```
 
 ### Calculating the ARMSS
@@ -53,17 +64,33 @@ standardizing the EDSS by age. Using age for the calculation instead of disease
 duration offers several advantages, not least of which are its availability,
 ease of measurement and absence of bias.
 
-If you want more information on the advantages of this score, I recommend that
-you read the original article, available [here](https://doi.org/10.1177%2F1352458517690618).
+If you want more information, I recommend that you read the original article,
+available [here](https://doi.org/10.1177%2F1352458517690618).
 
 You can easily calculate the ARMSS for every patient like this:
 
 ```python
-patients['ARMSS'] = ms.ARMSS(patients, ds='EDSS', age='Age')
+patients['ARMSS'] = ms.ARMSS(patients, ds='edss', age='ageatedss')
 ```
 
 Or alternatively, you can calculate it for every follow-up assessment like this:
 
 ```python
-followups['ARMSS'] = ms.ARMSS(followups, ds='EDSS', age='Age')
+followups['ARMSS'] = ms.ARMSS(followups, ds='edss', age='ageatedss')
+```
+
+### Calculating the P-MSSS
+
+The patient-derived MS Severity Score (P-MSSS) enables patients to rank their
+disability relative to others with similar disease duration. It does not require
+clinician input which means it can be use in a remote setting or as a more cost-
+effective alternative outcome measure for epidemiologic research.
+
+If you want more information, you should check the original article [here]
+(https://doi.org/10.1212/WNL.0b013e3182872855).
+
+In mssev, the P-MSSS score is implemented by the PMSSS function:
+
+```python
+patients['PMSSS'] = ms.PMSSS(patients, ds='pdds', duration='dd')
 ```
