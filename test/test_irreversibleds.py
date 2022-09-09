@@ -11,12 +11,9 @@ class TestGlobalMSSS(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.data = pd.read_csv('test/assessments.csv', parse_dates=['date'])
+        cls.data = pd.read_csv('test/samples/assessments.csv',
+                               parse_dates=['date'])
 
-        cls.data.set_index('date')[['edss', 'iedss_6M']].plot()
-        plt.show()
-
-    @unittest.skip
     def test_without_stability_period(self):
         iedss = irreversible_ds(self.data)
         self.assertTrue(np.allclose(iedss, self.data.iedss, equal_nan=True))
