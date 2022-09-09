@@ -28,3 +28,7 @@ def MSSS(df, ref='roxburgh', ds='edss', duration='dd'):
     results = df.merge(ref, left_on=[duration, ds],
                        right_index=True, how='left')
     return results.MSSS
+
+
+def PedMSSS(df, **kwargs):
+    return MSSS(df, ref='santoro', **kwargs)
