@@ -21,9 +21,9 @@ If you want to calculate some irreversible disability score (such as the EDSS),
 you can do so with the following code:
 
 ```python
-followups['Irr_EDSS'] = ms.irreversible_ds(followups,
-                                           id='ID', ds='EDSS', date='Date',
-                                           min_period=np.timedelta64(6, 'M'))
+followups['I_EDSS'] = ms.irreversible_ds(followups,
+                                         pid='ID', ds='EDSS', t='Date',
+                                         min_period=np.timedelta64(6, 'M'))
 ```
 
 ### Calculating the MSSS
@@ -36,14 +36,14 @@ a valuable tool in cross-sectional studies. You can read the original article
 You can calculate the MSSS for every patient with the following:
 
 ```python
-patients['MSSS'] = ms.global_msss(patients, ds='Irreversible EDSS', duration='Duration')
+patients['MSSS'] = ms.MSSS(patients, ds='EDSS', duration='Duration')
 ```
 
 If you want to calculate the MSSS for each follow-up assessment, you can do so
 like this:
 
 ```python
-followups['MSSS'] = ms.global_msss(followups, ds='EDSS', duration='Duration')
+followups['MSSS'] = ms.MSSS(followups, ds='EDSS', duration='Duration')
 ```
 
 ### Calculating the ARMSS
@@ -59,11 +59,11 @@ you read the original article, available [here](https://doi.org/10.1177%2F135245
 You can easily calculate the ARMSS for every patient like this:
 
 ```python
-patients['ARMSS'] = ms.global_armss(patients, ds='EDSS', age='Age')
+patients['ARMSS'] = ms.ARMSS(patients, ds='EDSS', age='Age')
 ```
 
 Or alternatively, you can calculate it for every follow-up assessment like this:
 
 ```python
-followups['ARMSS'] = ms.global_armss(followups, ds='EDSS', age='Age')
+followups['ARMSS'] = ms.ARMSS(followups, ds='EDSS', age='Age')
 ```

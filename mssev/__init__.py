@@ -1,3 +1,3 @@
-from .global_msss import global_msss
-from .global_armss import global_armss
+from .msss import MSSS
+from .armss import ARMSS
 from .irreversible_ds import irreversible_ds
