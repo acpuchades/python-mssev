@@ -4,9 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mssev"
-version = "0.4.2"
+version = "0.5.0"
 readme = "README.md"
-description = "Calculates ARMSS and both local and global MSSS"
+description = """
+This library contains several utilities and scores commonly used in multiple
+sclerosis studies.
+"""
 license = { text = "GPL-3.0-or-later" }
 classifiers = [
     "Programming Language :: Python :: 3",
