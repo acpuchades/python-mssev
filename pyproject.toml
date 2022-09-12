@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mssev"
-version = "0.5.1"
+version = "0.5.2"
 readme = "README.md"
 description = """
 This library contains several utilities and scores commonly used in multiple

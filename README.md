@@ -18,12 +18,10 @@ import mssev as ms
 ### Calculating irreversible disability
 
 If you want to calculate some irreversible disability measure (such as the
-Expanded Disability Status Scale or EDDS), you can do so with the following code:
+Expanded Disability Status Scale or EDSS), you can do so with the following code:
 
 ```python
-followups["IEDSS"] = ms.irreversible_ds(followups,
-                                        pid="pid", ds="edss", t="date",
-                                        min_period=np.timedelta64(6, "M"))
+followups["IEDSS"] = ms.irreversible_ds(followups, pid="pid", ds="edss", t="date")
 ```
 
 ### Calculating the MSSS
